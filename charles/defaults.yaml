@@ -1,0 +1,37 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+charles:
+  version: 4.5.6
+  rootuser: root
+  rootgroup: root
+  environ_file: /etc/default/charles.sh
+  environ:
+    - dummy=dummy
+  config: {}
+  dir:
+    tmp: /tmp/charles
+    archive: /usr/local
+  pkg:
+    name: charles
+    use_upstream_repo: false    # deb/yum
+    use_upstream_macapp: false  # macos
+    use_upstream_archive: true  # linux
+    format: tar
+    suffix: tar.gz
+    repo: {}
+    macapp: {}
+    archive:
+      uri: 'https://www.charles.com/assets/release'
+      tag: '_amd64'
+      source: 'set by map.jinja'
+      source_hash: 18a3d0faff2bc0c26e0e310961fff46a1a6094478bf4ab74d35cc288958da73d
+      trim_output: true
+      enforce_toplevel: false
+      options: '--strip-components=1'
+  retry_option:
+    # https://docs.saltstack.com/en/latest/ref/states/requisites.html#retrying-states
+    attempts: 3
+    until: true
+    interval: 10
+    splay: 10

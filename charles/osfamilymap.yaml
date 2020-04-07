@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+#
+# Setup variables using grains['os_family'] based logic.
+# You just need to add the key:values for an `os_family` that differ
+# from `defaults.yaml`.
+# Only add an `os_family` which is/will be supported by the formula
+#
+# If you do not need to provide defaults via the `os_family` grain,
+# you will need to provide at least an empty dict in this file, e.g.
+# osfamilymap: {}
+---
+{%- if grains.os == 'MacOS' %}
+    {%- set macos_rootuser = salt['cmd.run']("stat -f '%Su' /dev/console") %}
+    {%- set macos_rootgroup = salt['cmd.run']("stat -f '%Sg' /dev/console") %}
+{%- endif %}
+
+            {%- if 'oscodename' in grains %}
+Debian:
+  pkg:
+    name: charles-proxy
+    repo:
+      humanname: Charles (Proxy) repository
+      name: deb https://www.charles.com/packages/apt/ charles-proxy main
+      dist: {{ grains['oscodename'] }}
+      file: /etc/apt/sources.list.d/charles.list
+      key_url: https://www.charles.com/packages/apt/PublicKey
+      keyserver:  pgp.mit.edu
+      key: 1AD28806
+            {%- endif %}
+
+RedHat:
+  pkg:
+    name: charles-proxy
+    repo:
+      name: Charles (Proxy) repository
+      baseurl: https://www.charles.com/packages/yum
+      gpgkey: https://www.charles.com/packages/yum/PublicKey
+      repo_gpgcheck: 1
+
+Windows:
+  pkg:
+    archive:
+      tag: '-win64'
+      source_hash: 4c980c37792e675ea981a9263c8275c5c840a87cd62063d09833d32db2dcbd71
+
+MacOS:
+  rootuser: {{ macos_rootuser | d('') }}
+  rootgroup: {{ macos_rootgroup | d('') }}
+  environ_file: /etc/defaults/charles.sh
+  pkg:
+    name: charles   # homebrew
+    macapp:
+      name: Charles
+      tag: ''
+      uri: https://www.charles.com/assets/release
+      source_hash: c00a002476b7a453ff1585288781081f71a81daacf0e39fa362e733a65f7258c
