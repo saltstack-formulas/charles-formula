@@ -22,7 +22,7 @@ charles:
     repo: {}
     macapp: {}
     archive:
-      uri: 'https://www.charles.com/assets/release'
+      uri: 'https://www.charlesproxy.com/assets/release'
       tag: '_amd64'
       source: 'set by map.jinja'
       source_hash: 18a3d0faff2bc0c26e0e310961fff46a1a6094478bf4ab74d35cc288958da73d

@@ -17,13 +17,14 @@
 %}
 {%- set charles = salt['grains.filter_by']( {'defaults': defaults}, default='defaults', merge=_config) %}
 
-{%- set uri = '%s/%s/charles-proxy-%s%s.%s'|format(charles.pkg.macapp.uri, charles.version, charles.version, charles.pkg.macapp.tag, charles.pkg.suffix) %}
 {%- if charles.pkg.use_upstream_macapp %}
-       {%- do charles.pkg.archive.update({ 'name': '/Applications', 'source': uri }) %}
+       {%- set url = '%s/%s/charles-proxy-%s%s.%s'|format(charles.pkg.macapp.uri, charles.version, charles.version, charles.pkg.macapp.tag, charles.pkg.suffix) %}   # noqa: 204
+       {%- do charles.pkg.archive.update({ 'name': '/Applications', 'source': url }) %}
 {%- endif %}
 
 {%- if charles['pkg']['use_upstream_archive'] %}
-    {%- set dir = '%s-%s'|format(charles.pkg.name, charles.version) %}
-    {%- do charles.config.update({'path': charles.dir.archive + '/' + dir }) %},
-    {%- do charles.pkg.archive.update({'name': charles.dir.archive + '/' + dir, 'source': uri }) %}
+       {%- set url = '%s/%s/charles-proxy-%s%s.%s'|format(charles.pkg.archive.uri, charles.version, charles.version, charles.pkg.archive.tag, charles.pkg.suffix) %}   # noqa: 204
+       {%- set dir = '%s-%s'|format(charles.pkg.name, charles.version) %}
+       {%- do charles.config.update({'path': charles.dir.archive + '/' + dir }) %},
+       {%- do charles.pkg.archive.update({'name': charles.dir.archive + '/' + dir, 'source': url }) %}
 {%- endif %}
