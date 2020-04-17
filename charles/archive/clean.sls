@@ -4,7 +4,7 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import charles with context %}
 
-charles-cli-package-archive-clean-file-absent:
+charles-package-archive-clean-file-absent:
   file.absent:
     - names:
       - {{ charles.pkg.archive.name }}
