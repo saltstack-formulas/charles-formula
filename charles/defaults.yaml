@@ -9,6 +9,7 @@ charles:
   environ:
     - dummy=dummy
   config: {}
+  command: /bin/charles
   dir:
     tmp: /tmp/charles
     archive: /usr/local
@@ -35,3 +36,6 @@ charles:
     until: true
     interval: 10
     splay: 10
+  linux:
+    altpriority: 0
+    symlink: /usr/local/bin/charles
