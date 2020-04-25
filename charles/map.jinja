@@ -19,7 +19,7 @@
 
 {%- if charles.pkg.use_upstream_macapp %}
        {%- set url = '%s/%s/charles-proxy-%s%s.%s'|format(charles.pkg.macapp.uri, charles.version, charles.version, charles.pkg.macapp.tag, charles.pkg.suffix) %}   # noqa: 204
-       {%- do charles.pkg.archive.update({ 'name': '/Applications', 'source': url }) %}
+       {%- do charles.pkg.macapp.update({ 'name': '/Applications', 'source': url }) %}
 {%- endif %}
 
 {%- if charles['pkg']['use_upstream_archive'] %}
