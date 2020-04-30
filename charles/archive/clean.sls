@@ -9,3 +9,6 @@ charles-package-archive-clean-file-absent:
     - names:
       - {{ charles.pkg.archive.name }}
       - {{ charles.dir.tmp }}
+    {%- if charles.linux.altpriority|int == 0 or grains.os_family in ('Arch',) %}
+      -  {{ charles.linux.symlink }}
+    {%- endif %}

@@ -5,7 +5,7 @@
 {%- from tplroot ~ "/map.jinja" import charles with context %}
 {%- from tplroot ~ "/files/macros.jinja" import format_kwargs with context %}
 
-charles-package-archive-install-extract:
+charles-package-archive-install:
   pkg.installed:
     - names:
       - curl
@@ -18,7 +18,7 @@ charles-package-archive-install-extract:
     - mode: 755
     - makedirs: True
     - require_in:
-      - archive: charles-package-archive-install-extract
+      - archive: charles-package-archive-install
     - recurse:
         - user
         - group
@@ -29,3 +29,14 @@ charles-package-archive-install-extract:
     - retry: {{ charles.retry_option }}
     - user: {{ charles.rootuser }}
     - group: {{ charles.rootgroup }}
+
+charles-archive-install-file-symlink-charles:
+  file.symlink:
+    - name: {{ charles.linux.symlink }}
+    - target: {{ charles.pkg.archive.name }}/{{ charles.command }}
+    - force: True
+    - require:
+      - archive: charles-package-archive-install
+    - unless:
+      - {{ charles.linux.altpriority|int > 0 }}
+      - {{ grains.os_family|lower in ('windows', 'arch',) }}
