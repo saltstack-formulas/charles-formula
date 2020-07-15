@@ -47,54 +47,54 @@ Available states
    :local:
 
 ``charles``
-^^^^^^^^^^^
+^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
 This installs Charles (Proxy) packages
 
 ``charles.config``
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 This state will install Charles (Proxy) environment file.
 
 ``charles.archive``
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 This state will install Charles (Proxy) from archive.
 
 ``charles.package``
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
 
 This state will install Charles (Proxy) package on Debian, RedHat, and MacOS.
 
 ``charles.macapp``
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 This state will install Charles (Proxy) macpackage (not fully implemented)
 
 ``charles.archive.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Charles (Proxy) package archive.
 
 ``charles.macapp.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Charles (Proxy) macpackage archive.
 
 ``charles.package.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove Charles (Proxy) using deb/yum or homebrew.
 
 ``charles.config.clean``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 This state will remove the Charles (Proxy) environment file.
 
 ``charles.clean``
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
 
 *Meta-state (This is a state that includes other states)*.
 
