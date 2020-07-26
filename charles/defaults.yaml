@@ -3,8 +3,9 @@
 ---
 charles:
   version: 4.5.6
-  rootuser: root
-  rootgroup: root
+  identity:
+    rootuser: root
+    rootgroup: root
   environ_file: /etc/default/charles.sh
   environ:
     - dummy=dummy

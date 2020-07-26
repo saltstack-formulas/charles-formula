@@ -20,6 +20,7 @@ charles-package-install-pkg-installed:
 charles-package-install-cmd-run-cask:
   cmd.run:
     - name: brew cask install {{ charles.pkg.name }}
+    - runas: {{ charles.identity.rootuser }}
     - onlyif: test -x /usr/local/bin/brew
 
     {%- endif %}

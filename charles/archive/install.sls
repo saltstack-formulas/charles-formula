@@ -13,8 +13,8 @@ charles-package-archive-install:
       - gzip
   file.directory:
     - name: {{ charles.pkg.archive.name }}
-    - user: {{ charles.rootuser }}
-    - group: {{ charles.rootgroup }}
+    - user: {{ charles.identity.rootuser }}
+    - group: {{ charles.identity.rootgroup }}
     - mode: 755
     - makedirs: True
     - require_in:
@@ -27,8 +27,8 @@ charles-package-archive-install:
     {{- format_kwargs(charles.pkg.archive) }}
     - archive_format: {{ charles.pkg.format }}
     - retry: {{ charles.retry_option }}
-    - user: {{ charles.rootuser }}
-    - group: {{ charles.rootgroup }}
+    - user: {{ charles.identity.rootuser }}
+    - group: {{ charles.identity.rootgroup }}
 
 charles-archive-install-file-symlink-charles:
   file.symlink:

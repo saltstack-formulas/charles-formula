@@ -49,7 +49,7 @@ charles-macos-app-install-macpackage:
     - onchanges:
       - cmd: charles-macos-app-install-curl
   file.append:
-    - name: '/Users/{{ charles.rootuser }}/.bash_profile'
+    - name: '/Users/{{ charles.identity.rootuser }}/.bash_profile'
     - text: 'export PATH=$PATH:/Applications/Charles.app/Contents/MacOS/Charles'
     - require:
       - macpackage: charles-macos-app-install-macpackage

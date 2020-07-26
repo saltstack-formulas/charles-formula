@@ -20,8 +20,8 @@ charles-config-file-managed-environ_file:
                  )
               }}
     - mode: 640
-    - user: {{ charles.rootuser }}
-    - group: {{ charles.rootgroup }}
+    - user: {{ charles.identity.rootuser }}
+    - group: {{ charles.identity.rootgroup }}
     - makedirs: True
     - template: jinja
     - context:
