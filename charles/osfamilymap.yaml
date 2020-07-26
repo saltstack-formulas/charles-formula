@@ -49,8 +49,9 @@ Windows:
       source_hash: 4c980c37792e675ea981a9263c8275c5c840a87cd62063d09833d32db2dcbd71
 
 MacOS:
-  rootuser: {{ macos_rootuser | d('') }}
-  rootgroup: {{ macos_rootgroup | d('') }}
+  identity:
+    rootuser: {{ macos_rootuser | d('') }}
+    rootgroup: {{ macos_rootgroup | d('') }}
   environ_file: /etc/defaults/charles.sh
   pkg:
     name: charles   # homebrew

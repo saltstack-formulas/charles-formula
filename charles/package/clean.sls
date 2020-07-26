@@ -20,6 +20,7 @@ charles-package-remove-pkg-removed:
 charles-package-remove-cmd-run-cask:
   cmd.run:
     - name: brew cask remove {{ charles.pkg.name }}
+    - runas: {{ charles.identity.rootuser }}
     - onlyif: test -x /usr/local/bin/brew
 
     {%- endif %}
